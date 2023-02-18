@@ -39,3 +39,17 @@ export interface IBranch {
         code            : string;
     }
 }
+export interface IServiceCell {
+    isLoading                : boolean;
+    isDeleting               : boolean;
+    isLoadingDetails         : boolean;
+    isSubmitting             : boolean;
+    serviceCellList          : any[];
+    serviceCellPaginationData: any;
+    serviceCellDetails       : any;
+    serviceCellInput         : {
+        project_id           : number;
+        name                 : string;
+        code                 : string;
+    }
+}
