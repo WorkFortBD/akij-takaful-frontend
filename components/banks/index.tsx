@@ -35,7 +35,6 @@ export default function Banks(props: IBanksProps) {
     const [dataLimit, setDataLimit] = useState<number>(10);
     const [searchText, setSearchText] = useState<string>('');
 
-
     const { projectInput, projectList, projectPaginationData, isLoading, isSubmitting, projectDetails, isLoadingDetails, isDeleting } = useSelector((state: RootState) => state.Project);
 
     const columnData: any[] = [
