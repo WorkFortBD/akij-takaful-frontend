@@ -8,7 +8,7 @@ export const changeInputValue = (name: string, value: any, key: string) => (disp
         name: name,
         value: value,
     }
-    dispatch({ type: Types.CHANGE_INPUT_VALUE, payload: {data, key} });
+    dispatch({ type: Types.CHANGE_INPUT_VALUE, payload: { data, key } });
 };
 
 
@@ -17,7 +17,7 @@ export const submitProposal = (proposalInput: IProposal, router: any) => (dispat
     //     Toaster("error", "Proposal No can't be blank!");
     //     return false;
     // }
-    
+
     // if (proposalInput.plan_id === 0) {
     //     Toaster("error", "Plan can't be blank!");
     //     return false;
@@ -200,6 +200,30 @@ export const getPlanDropdownList = () => (dispatch: any) => {
 };
 
 
-export const isSameAddressCheck = (status)=> (dispatch)=>{
-    dispatch({ type: Types.IS_SAME_ADDRESS_STATUS, payload: status});
+export const isSameAddressCheck = (status) => (dispatch) => {
+    dispatch({ type: Types.IS_SAME_ADDRESS_STATUS, payload: status });
+}
+
+export const printProposalAction = (proposalPrintData: object) => (dispatch: any) => {
+    let response = {
+        status: false,
+        message: "",
+        isLoading: true,
+        data: [],
+    };
+    dispatch({ type: Types.PRINT_PROPOSAL, payload: response });
+
+    axios.post(`/proposals/print`, proposalPrintData)
+        .then((res) => {
+            response.status = true;
+            response.isLoading = false;
+            response.message = res.message;
+            response.data = res.data;
+            Toaster('success', response.message);
+            dispatch({ type: Types.PRINT_PROPOSAL, payload: response });
+        })
+        .catch((error) => {
+            response.isLoading = false;
+            dispatch({ type: Types.PRINT_PROPOSAL, payload: response });
+        });
 }

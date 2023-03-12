@@ -87,7 +87,8 @@ const initialState: IProposal = {
         dob: '',
         id_no: '',
         relation: '',
-    }
+    },
+    printProposalList: [],
 };
 
 
@@ -201,6 +202,15 @@ function ProposalsReducer(state = initialState, action: any) {
             return {
                 ...state,
                 isDeleting: action.payload.isLoading,
+            };
+
+        case Types.PRINT_PROPOSAL:
+            console.log(action.payload);
+            
+            return {
+                ...state,
+                printProposalList: action.payload.data,
+                isLoading: action.payload.isLoading,
             };
         default:
             break;

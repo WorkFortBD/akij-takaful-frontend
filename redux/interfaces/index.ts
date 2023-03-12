@@ -84,6 +84,20 @@ export interface IGlobal {
     sideMenuList: any[];
 }
 
+export interface IProposalBasicInput {
+    project_id: number;
+    branch_id: number;
+    proposal_no: string;
+    plan_id: number;
+    fa_code: string;
+    initial_sum_assured: number;
+    initial_premium: number;
+    proposal_personal_information: any;
+    proposer_present_address: any;
+    proposer_permanent_address: any;
+    proposer_bank_information: any;
+    proposer_guardian: any;
+}
 
 export interface IProposal {
     isLoading: boolean;
@@ -95,20 +109,7 @@ export interface IProposal {
     isSameAddress: boolean;
     paginationData: any[];
     proposalDetails: any;
-    proposalInput: {
-        project_id: number;
-        branch_id: number;
-        proposal_no: string;
-        plan_id: number;
-        fa_code: string;
-        initial_sum_assured: number;
-        initial_premium: number;
-        proposal_personal_information: any;
-        proposer_present_address: any;
-        proposer_permanent_address: any;
-        proposer_bank_information: any;
-        proposer_guardian: any;
-    };
+    proposalInput: IProposalBasicInput;
     proposal_personal_information: {
         proposal_nominee_id: number;
         full_name: string;
@@ -170,14 +171,14 @@ export interface IProposal {
         dob: string;
         id_no: string;
         relation: string;
-    }
+    },
+    printProposalList: Array<IProposalBasicInput>;
 }
 
 export interface IRole {
     isLoading: boolean;
     isDeleting: boolean;
     isSubmitting: boolean;
-    roleList: any[];
     roleList: any[];
     rolesListPaginated: any[];
     isRoleCreated: boolean,
